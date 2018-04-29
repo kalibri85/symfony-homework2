@@ -9,14 +9,18 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="display-5">Studentai</h1>
-    <ul class="list-group">
-
-        {% for key, project in projects %}
-        {% for members in project.members %}
-            <li class="list-group-item"><a href="{{ path('studentas', {'utm_campaign':project.mentor, 'utm_term': members, 'utm_content':key } ) }}">{{ members }}</a></li>
-            {% endfor %}
-        {% endfor %}
-
-    </ul>
+    <div class="container">
+      <h1 class="display-5">Studentai ir komandos</h1>
+      <div class="form-text">
+        Vardas: <input type="text" id="name"/>
+        <span id="validation-result" data-path="{{ path('validatePerson', {'element': 'name'}) }}"></span>
+      </div>
+      <div class="form-text">
+       Komanda: <input type="text" id="project"/>
+       <span id="validation-result2" data-path="{{ path('validateProject', {'element': 'project'}) }}"></span>
+      </div>
+    </div>
     {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
